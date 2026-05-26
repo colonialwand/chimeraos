@@ -100,10 +100,13 @@ sed -i '/OPTIONS/s/ debug/ !debug/g' /etc/makepkg.conf
 
 # install kernel package
 if [ "$KERNEL_PACKAGE_ORIGIN" == "local" ] ; then
-	pacman --noconfirm -U --overwrite '*' \
-	/override_pkgs/${KERNEL_PACKAGE}-*.pkg.tar.zst
-else
+	pacman --noconfirm -U --overwrite '*' /override_pkgs/${KERNEL_PACKAGE}-*.pkg.tar.zst
+elif [ "$KERNEL_PACKAGE_ORIGIN" == "repo" ] ; then
 	pacman --noconfirm -S "${KERNEL_PACKAGE}" "${KERNEL_PACKAGE}-headers"
+else
+	oras pull "${KERNEL_PACKAGE_ORIGIN}" --output /override_pkgs
+	rm -f /override_pkgs/linux-docs*.pkg.tar.zst
+	pacman --noconfirm -U --overwrite '*' /override_pkgs/${KERNEL_PACKAGE}-*.pkg.tar.zst
 fi
 
 # install local packages
