@@ -28,7 +28,10 @@ RUN echo -e "keyserver-options auto-key-retrieve" >> /etc/pacman.d/gnupg/gpg.con
   useradd build -G wheel -m && \
   su - build -c "git clone https://aur.archlinux.org/pikaur.git /tmp/pikaur" && \
   su - build -c "cd /tmp/pikaur && makepkg -f" && \
-  pacman --noconfirm -U /tmp/pikaur/pikaur-*.pkg.tar.zst
+  pacman --noconfirm -U /tmp/pikaur/pikaur-*.pkg.tar.zst && \
+  su - build -c "git clone https://aur.archlinux.org/oras.git /tmp/oras" && \
+  su - build -c "cd /tmp/oras && makepkg -f" && \
+  pacman --noconfirm -U /tmp/oras/oras-*.pkg.tar.zst
 
 # Auto add PGP keys for users
 RUN mkdir -p /etc/gnupg/ && echo -e "keyserver-options auto-key-retrieve" >> /etc/gnupg/gpg.conf
