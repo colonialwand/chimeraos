@@ -73,8 +73,8 @@ fi
 
 # download kernel packages from oci container if required
 if [ "$KERNEL_PACKAGE_ORIGIN" != "local" ] && [ "$KERNEL_PACKAGE_ORIGIN" != "repo" ] ; then
-	oras pull "${KERNEL_PACKAGE_ORIGIN}" --output /override_pkgs
-	rm -f /override_pkgs/${KERNEL_PACKAGE}-docs*.pkg.tar.zst
+	oras pull "${KERNEL_PACKAGE_ORIGIN}" --output ${BUILD_PATH}/override_pkgs
+	rm -f ${BUILD_PATH}/override_pkgs/${KERNEL_PACKAGE}-docs*.pkg.tar.zst
 fi
 
 # chroot into target
