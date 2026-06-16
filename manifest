@@ -206,6 +206,7 @@ export AUR_PACKAGES="\
 	nintendo-udev \
 	opengamepadui-bin \
 	opengamepadui-session-git \
+	oras \
 	pikaur \
 	powerstation-bin \
 	python-gbopyrator \
