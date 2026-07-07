@@ -10,7 +10,7 @@ export WEBSITE="https://chimeraos.org"
 export DOCUMENTATION_URL="https://chimeraos.org/about"
 export BUG_REPORT_URL="https://github.com/ChimeraOS/chimeraos/issues"
 
-export KERNEL_PACKAGE="linux"
+export KERNEL_PACKAGE="linux-ogc"
 export KERNEL_PACKAGE_ORIGIN="ghcr.io/opengamingcollective/kernel-packages-arch:latest"
 
 export PACKAGES="\
