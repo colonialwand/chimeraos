@@ -15,7 +15,6 @@ RUN echo -e "keyserver-options auto-key-retrieve" >> /etc/pacman.d/gnupg/gpg.con
   pyalpm \
   python \
   python-build \
-  python-flit-core \
   python-installer \
   python-hatchling \
   python-markdown-it-py \
@@ -55,9 +54,6 @@ COPY manifest /manifest
 RUN source /manifest && \
   echo "Server=https://archive.archlinux.org/repos/${ARCHIVE_DATE}/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist && \
   pacman --noconfirm -Syyuu; if [ -n "${PACKAGE_OVERRIDES}" ]; then wget --directory-prefix=/tmp/extra_pkgs ${PACKAGE_OVERRIDES}; pacman --noconfirm -U --overwrite '*' /tmp/extra_pkgs/*; rm -rf /tmp/extra_pkgs; fi
-
-# workaround for failing python-pyglet build required by chimera package
-RUN pacman --noconfirm -U https://archive.archlinux.org/packages/p/python-flit-core/python-flit-core-3.12.0-4-any.pkg.tar.zst
 
 USER build
 ENV BUILD_USER="build"
